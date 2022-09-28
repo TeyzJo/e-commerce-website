@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<center>
+	<h3> GET IN TOUCH </h3>
+</center>
+{% if message_name %}
+	<center>
+	<h2> Thanks  {{ message_name }}!</h2>
+		<p> We receive your message and we will respond soon </p>
+	</center>
+{% else %}
+<form action="{% url 'contactus' %}" method="post">
+	{% csrf_token %}
+	<div class="form-group col-md-12">
+		<input type="email" name="email" class="form-control" required="required" placeholder="Email">
+	</div>
+	<div class="form-group col-md-12">
+		<input type="text" name="subject" class="form-control" required="required" placeholder="Name">
+	</div>
+	<div class="form-group col-md-12">
+		<textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+	</div>                        
+	<div class="form-group col-md-12">
+		<input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+	</div>
+</form>
+{% endif %}
+{% endblock content %}
